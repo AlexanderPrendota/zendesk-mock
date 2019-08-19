@@ -37,3 +37,9 @@ class ZendeskApiRestController {
     data class Ticket(val id: Int)
 }
 
+@RestController
+class HealthController {
+    @GetMapping("/health")
+    fun healthCheck() = "I'm still here!"
+}
+
