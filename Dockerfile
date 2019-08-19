@@ -1,8 +1,8 @@
-FROM openjdk:8-jre as build
+FROM openjdk:8-jdk as build
 RUN mkdir -p /opt/zendesk-mock
 WORKDIR /opt/zendesk-mock
 ADD . .
-./gradlew :bootJar
+RUN ./gradlew :bootJar
 
 FROM openjdk:8-jre
 WORKDIR /opt/zendesk-mock
