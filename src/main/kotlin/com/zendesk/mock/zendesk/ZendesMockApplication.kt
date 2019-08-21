@@ -31,7 +31,7 @@ class ZendeskApiRestController {
     fun getTicket(@PathVariable id: Int) = mapOf("ticket" to Ticket(id))
 
     @GetMapping("/tickets/show_many.json")
-    fun getTicket(@PathVariable id: String, @RequestParam(required = false) ids: List<String>?) = mapOf("tickets" to emptyList<String>())
+    fun getTicket(@RequestParam(required = false) ids: List<String>?) = mapOf("tickets" to emptyList<String>())
 
     @PutMapping("/tickets/{id}.json")
     fun updateTicket(@PathVariable id: String) = mapOf("ticket" to Ticket(Random.nextInt()))
