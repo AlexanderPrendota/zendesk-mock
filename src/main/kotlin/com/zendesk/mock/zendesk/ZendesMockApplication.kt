@@ -24,6 +24,9 @@ class ZendeskApiRestController {
     @GetMapping("/users/{id}.json")
     fun getUser(@PathVariable id: String) = mapOf("user" to User(Random.nextInt(), Random.nextInt().toString()))
 
+    @GetMapping("/search.json")
+    fun getSearchResults(@RequestParam(required = false) param: String?, @RequestParam(required = false) query: String?) = mapOf("results" to emptyList<String>())
+
     @GetMapping("/tickets/{id}.json")
     fun getTicket(@PathVariable id: Int) = mapOf("ticket" to Ticket(id))
 
