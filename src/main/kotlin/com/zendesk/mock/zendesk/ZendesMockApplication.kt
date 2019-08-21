@@ -41,7 +41,7 @@ class ZendeskApiRestController {
     fun createTicket(@RequestBody `object`: Any?) = mapOf("ticket" to Ticket())
 
     data class User(val id: Int, val name: String)
-    data class Ticket(val id: Int = Random.nextInt(), @JsonProperty("requester_id") val requesterId: Int = Random.nextInt())
+    data class Ticket(val id: Int = Math.abs(Random.nextInt()), @JsonProperty("requester_id") val requesterId: Int = Math.abs(Random.nextInt()))
 }
 
 @RestController
