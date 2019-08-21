@@ -1,5 +1,6 @@
 package com.zendesk.mock.zendesk
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.web.bind.annotation.*
@@ -34,13 +35,13 @@ class ZendeskApiRestController {
     fun getTicket(@RequestParam(required = false) ids: List<String>?) = mapOf("tickets" to emptyList<String>())
 
     @PutMapping("/tickets/{id}.json")
-    fun updateTicket(@PathVariable id: String) = mapOf("ticket" to Ticket(Random.nextInt()))
+    fun updateTicket(@PathVariable id: String) = mapOf("ticket" to Ticket())
 
     @PostMapping("/tickets.json")
-    fun createTicket(@RequestBody `object`: Any?) = mapOf("ticket" to Ticket(Random.nextInt()))
+    fun createTicket(@RequestBody `object`: Any?) = mapOf("ticket" to Ticket())
 
     data class User(val id: Int, val name: String)
-    data class Ticket(val id: Int)
+    data class Ticket(val id: Int = Random.nextInt(), @JsonProperty("requester_id") val requesterId: Int = Random.nextInt())
 }
 
 @RestController
